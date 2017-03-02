@@ -1,6 +1,6 @@
 <?php
-    $page = (isset($_GET['page']) ? $_GET['page'] : "index");
-    $file = $page . '.php';
+$page = (isset($_GET['page']) ? $_GET['page'] : "index");
+$file = $page . '.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,36 +17,39 @@
           href="css/main.css">
     <title>
         <?php
-            switch($page){
-                case 'index':
-                    echo 'Home page';
-                    break;
-                case 'contact':
-                    echo 'Contactez-nous';
-                    break;
-            }
+        switch($page){
+            case 'index':
+                echo 'Home page';
+                break;
+            case 'contact':
+                echo 'Contactez-nous';
+                break;
+            case 'list':
+                echo 'Liste des contacts';
+                break;
+        }
         ?>
     </title>
 </head>
 <body>
+<div class="container-fluid">
     <header>
         <?php include "inc/header.php"; ?>
     </header>
     <main>
-        <div class="container-fluid">
-            <?php include "page/$file"; ?>
-        </div>
+        <?php include "page/$file"; ?>
     </main>
     <footer>
         <?php include "inc/footer.php"; ?>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.1.1.js"
-            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-            crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous">
-    </script>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+</script>
 </body>
 </html>
