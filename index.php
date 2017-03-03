@@ -1,6 +1,16 @@
 <?php
-$page = (isset($_GET['page']) ? $_GET['page'] : "index");
-$file = $page . '.php';
+    require "src/routes.php";
+
+    $uri = $_SERVER['REQUEST_URI'];
+    $segments = explode('?', $uri);
+    $params = (isset($segments[1])) ? $segments[1] : "";
+    $pages = explode('/', $segments[0]);
+    if (isset($routes[$pages[1]])){
+        $page = $routes[$pages[1]];
+    } else {
+        $page = 'index';
+    }
+    $file = $page . '.php';
 ?>
 <!doctype html>
 <html lang="en">
