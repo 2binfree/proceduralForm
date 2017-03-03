@@ -1,16 +1,9 @@
 <?php
-    require "src/routes.php";
+require "src/routes.php";
 
-    $uri = $_SERVER['REQUEST_URI'];
-    $segments = explode('?', $uri);
-    $params = (isset($segments[1])) ? $segments[1] : "";
-    $pages = explode('/', $segments[0]);
-    if (isset($routes[$pages[1]])){
-        $page = $routes[$pages[1]];
-    } else {
-        $page = 'index';
-    }
-    $file = $page . '.php';
+$uri = $_SERVER['REQUEST_URI'];
+$routeInfos = getRoute($uri);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,19 +19,7 @@
     <link rel="stylesheet"
           href="css/main.css">
     <title>
-        <?php
-        switch($page){
-            case 'index':
-                echo 'Home page';
-                break;
-            case 'contact':
-                echo 'Contactez-nous';
-                break;
-            case 'list':
-                echo 'Liste des contacts';
-                break;
-        }
-        ?>
+        <?php echo $routeInfos['title']; ?>
     </title>
 </head>
 <body>
@@ -47,7 +28,7 @@
         <?php include "inc/header.php"; ?>
     </header>
     <main>
-        <?php include "page/$file"; ?>
+        <?php include "page/" . $routeInfos['file']; ?>
     </main>
     <footer>
         <?php include "inc/footer.php"; ?>
