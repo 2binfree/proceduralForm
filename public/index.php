@@ -1,8 +1,12 @@
 <?php
-require "../src/routes.php";
+require "../src/routeManager.php";
+require "../src/bddManager.php";
+require "../src/userManager.php";
 
 $uri = $_SERVER['REQUEST_URI'];
 $routeInfos = getRoute($uri);
+
+$conn = getConnection();
 
 ?>
 <!doctype html>
