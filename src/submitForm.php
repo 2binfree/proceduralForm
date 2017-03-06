@@ -7,11 +7,12 @@
  */
 require "bdd.php";
 
-$firstname   = $_POST["firstname"];
-$lastname    = $_POST["lastname"];
-$email       = $_POST["email"];
-
 $conn = getConnection();
+
+$firstname   = mysqli_real_escape_string($conn, $_POST["firstname"]);
+$lastname    = mysqli_real_escape_string($conn, $_POST["lastname"]);
+$email       = mysqli_real_escape_string($conn, $_POST["email"]);
+
 $sql = "INSERT INTO contact (firstname, lastname, email) VALUES ('$firstname', '$lastname', '$email');";
 execSql($conn, $sql);
 
