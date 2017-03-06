@@ -5,7 +5,7 @@
  * Date: 22/09/16
  * Time: 11:07
  */
-require "bdd.php";
+require "../src/bdd.php";
 
 $conn = getConnection();
 
