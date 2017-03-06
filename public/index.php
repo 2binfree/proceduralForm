@@ -1,5 +1,5 @@
 <?php
-require "src/routes.php";
+require "../src/routes.php";
 
 $uri = $_SERVER['REQUEST_URI'];
 $routeInfos = getRoute($uri);
@@ -25,13 +25,13 @@ $routeInfos = getRoute($uri);
 <body>
 <div class="container-fluid">
     <header>
-        <?php include "inc/header.php"; ?>
+        <?php include "../inc/header.php"; ?>
     </header>
     <main>
-        <?php include "page/" . $routeInfos['file']; ?>
+        <?php include "../page/" . $routeInfos['file']; ?>
     </main>
     <footer>
-        <?php include "inc/footer.php"; ?>
+        <?php include "../inc/footer.php"; ?>
     </footer>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.js"

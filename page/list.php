@@ -1,5 +1,5 @@
 <?php
-    require "src/bdd.php";
+    require "../src/bdd.php";
 
     $sql = "SELECT * from contact";
     $mysqli = getConnection();

@@ -1,11 +1,4 @@
-
 <?php
-/**
- * Created by PhpStorm.
- * User: ubuntu
- * Date: 22/09/16
- * Time: 12:56
- */
 
 /**
  * @return mysqli
@@ -25,7 +18,7 @@ function getConnection()
 }
 
 /**
- * @param $mysqli
+ * @param  mysqli $mysqli
  * @param $sql
  * @return mixed
  */
