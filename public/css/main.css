@@ -2,3 +2,15 @@
     background-color: black;
     color: azure;
 }
+
+.footerMarge{
+    padding-top: 25px;
+}
+
+.listEdit{
+    color: blue;
+}
+
+.listRemove{
+    color: red;
+}

@@ -15,14 +15,16 @@ function getRoute($uri) {
     } else {
         $index = "index";
     }
+    $argument = (isset($pages[2])) ? $pages[2] : "";
     $page = $routes[$index]['page'];
     $title = $routes[$index]['title'];
     $file = $page . '.php';
 
     return array(
-        'page'  => $page,
-        'title' => $title,
-        'file'  => $file,
+        'page'      => $page,
+        'title'     => $title,
+        'file'      => $file,
+        'argument'  => $argument,
     );
 }
 
