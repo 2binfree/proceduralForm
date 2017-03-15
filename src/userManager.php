@@ -8,7 +8,8 @@
 
 function addUser($conn, $firstname, $lastname, $email, $password)
 {
-    $sql = "INSERT INTO contact (firstname, lastname, email, password) VALUES ('$firstname', '$lastname', '$email', '$password');";
+    $sql = "INSERT INTO contact (firstname, lastname, email, password) 
+            VALUES ('$firstname', '$lastname', '$email', '$password');";
     execSql($conn, $sql);
 }
 

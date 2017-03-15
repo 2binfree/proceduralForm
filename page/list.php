@@ -19,6 +19,7 @@ $data = listUser($conn);
                 <input type="hidden" name="userId" id="userId" value="">
                 <table class="table">
                     <tr>
+                        <th>ID</th>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Email</th>
@@ -27,6 +28,11 @@ $data = listUser($conn);
                     </tr>
                     <?php foreach($data as $record): ?>
                         <tr>
+                            <td>
+                                <a href="/contactez-nous?userid=<?php echo $record['id'];?>">
+                                    <?php echo $record['id'];?>
+                                </a>
+                            </td>
                             <td><?php echo $record['firstname'];?></td>
                             <td><?php echo $record['lastname'];?></td>
                             <td><?php echo $record['lastname'];?></td>
