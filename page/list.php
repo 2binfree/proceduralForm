@@ -2,14 +2,14 @@
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
     $id = $_POST['userId'];
     if (isset($_POST['removeUser'])){
-        removeUser($conn, $id);
+        $userManager->removeUser($id);
     }
     if (isset($_POST['editUser'])){
         header('Location: /contactez-nous/?userid=' . $id);
     }
 }
 
-$data = listUser($conn);
+$data = $userManager->listUser();
 ?>
 <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">

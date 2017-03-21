@@ -1,19 +1,19 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $firstname = mysqli_real_escape_string($conn, $_POST["firstname"]);
-        $lastname = mysqli_real_escape_string($conn, $_POST["lastname"]);
-        $email = mysqli_real_escape_string($conn, $_POST["email"]);
-        $password = mysqli_real_escape_string($conn, $_POST["password"]);
+        $userManager->setFirstName($_POST["firstname"]);
+        $userManager->setLastname($_POST["lastname"]);
+        $userManager->setEmail($_POST["email"]);
+        $userManager->setPassword($_POST["password"]);
         if ($_POST["id"] !== ""){
-            updateUser($conn, $_POST["id"], $firstname, $lastname, $email, $password);
+            $userManager->updateUser($_POST["id"]);
         } else {
-            addUser($conn, $firstname, $lastname, $email, $password);
+            $userManager->addUser();
         }
         header('Location: /?page=index&addcontact=ok');
     } else {
         if (isset($_GET['userid'])) {
             $id = $_GET['userid'];
-            $user = getUser($conn, $id);
+            $user = $userManager->getUser($id);
             $firstname =  $user['firstname'];
             $lastname =  $user['lastname'];
             $email =  $user['email'];

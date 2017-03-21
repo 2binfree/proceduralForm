@@ -1,12 +1,16 @@
 <?php
 
+require "../config/credentials.php";
 require "../src/routeManager.php";
-require "../src/bddManager.php";
-require "../src/userManager.php";
+require "../src/BddManager.php";
+require "../src/UserManager.php";
 
 $uri = $_SERVER['REQUEST_URI'];
 $routeInfos = getRoute($uri);
-$conn = getConnection();
+
+$bdd = new \wcs\BddManager();
+$userManager = new \wcs\UserManager($bdd);
+
 
 ?>
 <!doctype html>
