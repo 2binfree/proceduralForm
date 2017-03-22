@@ -29,7 +29,7 @@ $data = $userManager->listUser();
                     <?php foreach($data as $record): ?>
                         <tr>
                             <td>
-                                <a href="/contactez-nous?id=<?php echo $record['id'];?>">
+                                <a href="/contactez-nous/id/<?php echo $record['id'];?>">
                                     <?php echo $record['id'];?>
                                 </a>
                             </td>
@@ -38,11 +38,8 @@ $data = $userManager->listUser();
                             <td><?php echo $record['lastname'];?></td>
                             <td><?php echo $record['password'];?></td>
                             <td>
-                                <button name="removeUser" type="submit" id="removeUser_<?php echo $record['id']; ?>" class="btn btn-default" aria-label="Left Align">
+                                <button name="removeUser" type="submit" id="removeUser" data-id="<?php echo $record['id']; ?>" class="btn btn-default" aria-label="Left Align">
                                     <span class="glyphicon glyphicon-remove listRemove" aria-hidden="true"></span>
-                                </button>
-                                <button name="editUser" id="editUser_<?php echo $record['id']; ?>" type="submit" class="btn btn-default" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-pencil listEdit" aria-hidden="true"></span>
                                 </button>
                             </td>
                         </tr>

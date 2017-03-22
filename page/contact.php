@@ -1,5 +1,5 @@
 <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if ($routeInfos['method'] === 'post'){
         $userManager->hydrate($_POST);
         if ($userManager->getId() !== ""){
             $userManager->updateUser();
@@ -8,8 +8,8 @@
         }
         header('Location: /?page=index&addcontact=ok');
     } else {
-        if (isset($_GET['id'])) {
-            $userManager->getUser($_GET['id']);
+        if (isset($routeInfos["parameters"]["id"])) {
+            $userManager->getUser($routeInfos["parameters"]["id"]);
         }
 ?>
 <div class="row">
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="">Mot de passe</label>
                 <input type="text" class="form-control" name="password" id="password"
-                       placeholder="Entrez votre mot de passe" value="<?php echo $userManager->getPassword();?>">
+                       placeholder="Entrez votre mot de passe" value="<?php echo $password;?>">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
