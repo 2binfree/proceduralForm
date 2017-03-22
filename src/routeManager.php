@@ -18,10 +18,11 @@ function getRoute($uri) {
     // get main page to display
     array_shift($path);
     $queryPage = "index";
-    if (isset($path[0])){
+    if ($path[0] !== ""){
         $queryPage = $path[0];
         if (!isset($routes[$queryPage])){
             header("HTTP/1.0 404 Not Found");
+            die;
         }
     }
 
@@ -43,8 +44,10 @@ function getRoute($uri) {
     // parse all argument passed by classic way (? and &)
     $args = explode("&", $arguments);
     foreach($args as $arg){
-        $elements = explode("=", $arg);
-        $parameters[$elements[0]] = $elements[1];
+        if ($arg !== "") {
+            $elements = explode("=", $arg);
+            $parameters[$elements[0]] = $elements[1];
+        }
     }
 
     $page = $routes[$queryPage]['page'];
@@ -52,10 +55,11 @@ function getRoute($uri) {
     $file = $page . '.php';
 
     return array(
+        'method'        => ($_SERVER['REQUEST_METHOD'] === 'POST') ? 'post' : 'get',
         'page'          => $page,
         'title'         => $title,
         'file'          => $file,
-        '$parameters'   => $parameters,
+        'parameters'    => $parameters,
     );
 }
 

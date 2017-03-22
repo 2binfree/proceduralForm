@@ -1,5 +1,5 @@
 <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if ($routeInfos['method'] === 'post'){
         $firstname = mysqli_real_escape_string($conn, $_POST["firstname"]);
         $lastname = mysqli_real_escape_string($conn, $_POST["lastname"]);
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
@@ -11,8 +11,8 @@
         }
         header('Location: /?page=index&addcontact=ok');
     } else {
-        if (isset($_GET['userid'])) {
-            $id = $_GET['userid'];
+        if (isset($routeInfos["parameters"]["id"])) {
+            $id = $routeInfos["parameters"]["id"];
             $user = getUser($conn, $id);
             $firstname =  $user['firstname'];
             $lastname =  $user['lastname'];

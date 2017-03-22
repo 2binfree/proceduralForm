@@ -29,7 +29,7 @@ $data = listUser($conn);
                     <?php foreach($data as $record): ?>
                         <tr>
                             <td>
-                                <a href="/contactez-nous?userid=<?php echo $record['id'];?>">
+                                <a href="/contactez-nous/id/<?php echo $record['id'];?>">
                                     <?php echo $record['id'];?>
                                 </a>
                             </td>
