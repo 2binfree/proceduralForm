@@ -1,16 +1,13 @@
 <?php
 
 require "../config/credentials.php";
-require "../src/routeManager.php";
+require "../src/RouteManager.php";
 require "../src/BddManager.php";
 require "../src/UserManager.php";
 
-$uri = $_SERVER['REQUEST_URI'];
-$routeInfos = getRoute($uri);
-
-$bdd = new \wcs\BddManager();
-$userManager = new \wcs\UserManager($bdd);
-
+$route          = new \wcs\RouteManager();
+$bdd            = new \wcs\BddManager();
+$userManager    = new \wcs\UserManager($bdd);
 
 ?>
 <!doctype html>
@@ -27,7 +24,7 @@ $userManager = new \wcs\UserManager($bdd);
     <link rel="stylesheet"
           href="/css/main.css">
     <title>
-        <?php echo $routeInfos['title']; ?>
+        <?php echo $route->getTitle(); ?>
     </title>
 </head>
 <body>
@@ -36,7 +33,7 @@ $userManager = new \wcs\UserManager($bdd);
         <?php include "../inc/header.php"; ?>
     </header>
     <main>
-        <?php include "../page/" . $routeInfos['file']; ?>
+        <?php include "../page/" . $route->getFile(); ?>
     </main>
     <footer>
         <?php include "../inc/footer.php"; ?>
@@ -50,7 +47,7 @@ $userManager = new \wcs\UserManager($bdd);
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous">
 </script>
-<?php if ($routeInfos['page'] === "list"): ?>
+<?php if ($route->getRoute() === "list"): ?>
     <script src="/js/list.js"></script>
 <?php endif; ?>
 </body>

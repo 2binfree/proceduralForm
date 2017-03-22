@@ -1,13 +1,10 @@
 <?php
-    if (isset($_GET['addcontact'])):
-        if ($_GET['addcontact'] == "ok"):?>
-            <div class="alert alert-success" role="alert">
-                <b>thanks</b>
-                Your contact has been recorded in our database !
-            </div>
-        <?php endif;
-    endif;
-?>
+if ($route->getParameter('addcontact') === "ok"):?>
+    <div class="alert alert-success" role="alert">
+        <b>thanks</b>
+        Your contact has been recorded in our database !
+    </div>
+<?php endif; ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="jumbotron">

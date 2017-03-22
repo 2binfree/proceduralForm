@@ -13,7 +13,11 @@ class BddManager
     {
         $mysqli = new \mysqli(HOST, USER, PASSWORD, DBNAME);
         if ($mysqli->connect_errno) {
-            throw new \mysqli_sql_exception("Failed to connect to MySQL : (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+            throw new \mysqli_sql_exception(
+                "Failed to connect to MySQL : (" .
+                $mysqli->connect_errno . ") " .
+                $mysqli->connect_error
+            );
         }
         $this->connection = $mysqli;
     }

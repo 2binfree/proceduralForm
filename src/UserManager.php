@@ -193,6 +193,4 @@ class UserManager
     {
         $this->password = md5($password);
     }
-
-
 }

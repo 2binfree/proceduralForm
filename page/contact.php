@@ -1,15 +1,15 @@
 <?php
-    if ($routeInfos['method'] === 'post'){
+    if ($route->getMethod() === 'post'){
         $userManager->hydrate($_POST);
         if ($userManager->getId() !== ""){
             $userManager->updateUser();
         } else {
             $userManager->addUser();
         }
-        header('Location: /?page=index&addcontact=ok');
+        header('Location: /' . $route->getUrl('home') . '/addcontact/ok');
     } else {
-        if (isset($routeInfos["parameters"]["id"])) {
-            $userManager->getUser($routeInfos["parameters"]["id"]);
+        if ($route->getParameter("id") != "") {
+            $userManager->getUser($route->getParameter("id"));
         }
 ?>
 <div class="row">
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="">Mot de passe</label>
                 <input type="text" class="form-control" name="password" id="password"
-                       placeholder="Entrez votre mot de passe" value="<?php echo $password;?>">
+                       placeholder="Entrez votre mot de passe" value="<?php echo $userManager->getPassword();?>">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

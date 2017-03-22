@@ -1,14 +1,13 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == "POST"){
+if ($route->getMethod() === "post"){
     $id = $_POST['userId'];
     if (isset($_POST['removeUser'])){
         $userManager->removeUser($id);
     }
     if (isset($_POST['editUser'])){
-        header('Location: /contactez-nous/?userid=' . $id);
+        header('Location: /contactez-nous/id/' . $id);
     }
 }
-
 $data = $userManager->listUser();
 ?>
 <div class="row">
@@ -29,7 +28,7 @@ $data = $userManager->listUser();
                     <?php foreach($data as $record): ?>
                         <tr>
                             <td>
-                                <a href="/contactez-nous/id/<?php echo $record['id'];?>">
+                                <a href="<?php echo $route->getUrl('contact')?>/id/<?php echo $record['id'];?>">
                                     <?php echo $record['id'];?>
                                 </a>
                             </td>
