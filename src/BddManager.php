@@ -11,7 +11,7 @@ class BddManager
 
     public function __construct()
     {
-        $mysqli = new \mysqli(HOST, USER, PASSWORD, DBNAME);
+        $mysqli = new \mysqli(Config::HOST, Config::USER, Config::PASSWORD, Config::DBNAME);
         if ($mysqli->connect_errno) {
             throw new \mysqli_sql_exception(
                 "Failed to connect to MySQL : (" .

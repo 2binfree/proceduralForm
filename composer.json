@@ -10,8 +10,9 @@
         }
     ],
     "require": {
+        "twig/twig": "^2.3"
     },
     "autoload": {
-        "psr-4": {"wcs\\": "src/"}
+        "psr-4": {"wcs\\": ["src/", "config/"]}
     }
 }

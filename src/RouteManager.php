@@ -15,9 +15,9 @@ class RouteManager
      */
     private $route;
     private $title;
-    private $file;
     private $method;
     private $url;
+    private $page;
 
     public function __construct()
     {
@@ -30,12 +30,14 @@ class RouteManager
 
         // get main page to display
         array_shift($path);
-        $route = $this->routes['home'];
+        $routeName = 'home';
+        $route = $this->routes[$routeName];
         if ($path[0] !== "") {
             if (false === ($routeIndex = array_search($path[0], array_column($this->routes, 'url')))){
                 header("HTTP/1.0 404 Not Found");
                 die;
             } else {
+                $routeName = array_keys(array_slice($this->routes, $routeIndex, 1))[0];
                 $route = array_values(array_slice($this->routes, $routeIndex, 1))[0];
             }
         }
@@ -66,7 +68,7 @@ class RouteManager
         $this->url          = $route['url'];
         $this->page         = $route['page'];
         $this->title        = $route['title'];
-        $this->file         = $this->page . '.php';
+        $this->route        = $routeName;
         $this->method       = ($_SERVER['REQUEST_METHOD'] === 'POST') ? 'post' : 'get';
         $this->parameters   = $parameters;
     }
@@ -100,6 +102,14 @@ class RouteManager
     }
 
     /**
+     * @return string
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
      * @param string $route
      * @return string
      */
@@ -117,14 +127,6 @@ class RouteManager
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFile()
-    {
-        return $this->file;
     }
 
     /**
