@@ -1,54 +1,35 @@
 <?php
 
-require "../config/credentials.php";
-require "../src/RouteManager.php";
-require "../src/BddManager.php";
-require "../src/UserManager.php";
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $route          = new \wcs\RouteManager();
 $bdd            = new \wcs\BddManager();
 $userManager    = new \wcs\UserManager($bdd);
 
-?>
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="/css/main.css">
-    <title>
-        <?php echo $route->getTitle(); ?>
-    </title>
-</head>
-<body>
-<div class="container-fluid">
-    <header>
-        <?php include "../inc/header.php"; ?>
-    </header>
-    <main>
-        <?php include "../page/" . $route->getFile(); ?>
-    </main>
-    <footer>
-        <?php include "../inc/footer.php"; ?>
-    </footer>
-</div>
-<script src="https://code.jquery.com/jquery-3.1.1.js"
-        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-        crossorigin="anonymous">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous">
-</script>
-<?php if ($route->getRoute() === "list"): ?>
-    <script src="/js/list.js"></script>
-<?php endif; ?>
-</body>
-</html>
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/../view');
+$twig = new Twig_Environment($loader, array(
+    'cache' => __DIR__ . '/../tmp',
+));
+
+$templateData = array(
+    'page'  => $route->getPage(),
+    'route' => $route->getRoute(),
+    'title' => $route->getTitle(),
+);
+
+require '../page/' . $route->getPage() . ".php";
+
+switch($route->getRoute()){
+    case 'home':
+        $templateData['alert'] = $alert;
+        break;
+    case 'list':
+        $templateData['data'] = $data;
+        $templateData['contactURL'] = $route->getUrl('contact');
+        break;
+    case 'contact':
+        $templateData['userManager'] = $userManager;
+        break;
+}
+
+echo $twig->render('index.html.twig', $templateData);

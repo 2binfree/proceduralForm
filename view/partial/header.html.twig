@@ -1,0 +1,10 @@
+<div class="row">
+    <nav class="navbar navbar-default" role="navigation">
+        <a class="navbar-brand" href="/">My Static Site</a>
+        <ul class="nav navbar-nav">
+            <li {%  if(route == 'home') %} class="active" {% endif %}><a href="/">Home</a></li>
+            <li {%  if(route == 'list') %} class="active" {% endif %}><a href="/liste-des-contacts">Liste</a></li>
+            <li {%  if(route == 'contact') %} class="active" {% endif %}><a href="/contactez-nous">Contact</a></li>
+        </ul>
+    </nav>
+</div>

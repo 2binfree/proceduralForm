@@ -1,3 +1,4 @@
-config/credentials.php
-
+config/Config.php
 /vendor/
+/tmp/*
+!/tmp/.gitkeep
